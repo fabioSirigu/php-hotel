@@ -60,8 +60,28 @@ $hotels = [
 
                         <?php endforeach; ?> */
 
-/* if ($_GET[$parking] == 'true') {
-} */
+$parking = $_GET['parking'];
+
+if (isset($parking)) {
+      $hotels = parkingHotel($parking, $hotels);
+}
+
+
+function parkingHotel($select, $hotels)
+{
+      $arrayUpdate = [];
+      if ($select == 'true') {
+            $select = true;
+      } else {
+            $select = false;
+      }
+      foreach ($hotels as $hotel) {
+            if ($hotel['parking'] == $select) {
+                  array_push($arrayUpdate, $hotel);
+            }
+      }
+      return $arrayUpdate;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
