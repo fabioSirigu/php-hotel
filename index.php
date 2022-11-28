@@ -47,18 +47,6 @@ $hotels = [
             'distance_to_center' => 50
       ],
 ];
-/* foreach ($hotels as $hotel) {
-      echo '<br>';
-      foreach ($hotel as $key => $details) {
-            echo $key . ': ' . $details . '<br>';
-      }
-}; */
-// METODO INIZIALE
-/* <?php foreach ($hotels as $key => $hotel)
-                              foreach ($hotel as $key => $details) : ?>
-                              <th scope="row"><?php echo $key  ?></th>
-
-                        <?php endforeach; ?> */
 
 $parking = $_GET['parking'];
 
@@ -98,15 +86,14 @@ function parkingHotel($select, $hotels)
       <div class="container mt-5 d-flex align-items-center flex-column">
             <form action="index.php" method="get" class="py-5 text-center">
                   <div class="pb-3">
-                        <label for="parking">Parcheggio</label>
+                        <label for="parking">Lista dei parcheggi</label>
                         <select name="parking" id="parking">
-                              <option value="" disabled="disabled" selected>Seleziona un opzione</option>
+                              <option value="" disabled="disabled" selected>Tutti</option>
                               <option value="true">Si</option>
                               <option value="false">No</option>
                         </select>
                   </div>
                   <button type="submit" class="btn btn-primary">Cerca</button>
-                  <button type="reset" class="btn btn-danger">Reset</button>
             </form>
             <table>
                   <thead>
