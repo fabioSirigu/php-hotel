@@ -49,13 +49,14 @@ $hotels = [
 ];
 
 $parking = $_GET['parking'];
+$vote = $_GET['vote'];
 
 if (isset($parking)) {
-      $hotels = parkingHotel($parking, $hotels);
+      $hotels = filterParams($parking, $vote, $hotels);
 }
 
 
-function parkingHotel($select, $hotels)
+function filterParams($select, $vote, $hotels)
 {
       $arrayUpdate = [];
       if ($select == 'true') {
@@ -64,7 +65,7 @@ function parkingHotel($select, $hotels)
             $select = false;
       }
       foreach ($hotels as $hotel) {
-            if ($hotel['parking'] == $select) {
+            if ($hotel['parking'] == $select && $hotel['vote'] >= $vote) {
                   array_push($arrayUpdate, $hotel);
             }
       }
@@ -91,6 +92,17 @@ function parkingHotel($select, $hotels)
                               <option value="" disabled="disabled" selected>Tutti</option>
                               <option value="true">Si</option>
                               <option value="false">No</option>
+                        </select>
+                  </div>
+                  <div class="pb-3">
+                        <label for="vote" class="form-label mb-0">Voto</label>
+                        <select name="vote" id="vote">
+                              <option value="" disabled="disabled" selected>Tutti</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
                         </select>
                   </div>
                   <button type="submit" class="btn btn-primary">Cerca</button>
