@@ -47,12 +47,21 @@ $hotels = [
             'distance_to_center' => 50
       ],
 ];
-foreach ($hotels as $hotel) {
+/* foreach ($hotels as $hotel) {
       echo '<br>';
       foreach ($hotel as $key => $details) {
             echo $key . ': ' . $details . '<br>';
       }
-};
+}; */
+// METODO INIZIALE
+/* <?php foreach ($hotels as $key => $hotel)
+                              foreach ($hotel as $key => $details) : ?>
+                              <th scope="row"><?php echo $key  ?></th>
+
+                        <?php endforeach; ?> */
+
+/* if ($_GET[$parking] == 'true') {
+} */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,10 +70,50 @@ foreach ($hotels as $hotel) {
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
       <title>Document</title>
 </head>
 
 <body>
+      <div class="container mt-5 d-flex align-items-center flex-column">
+            <form action="index.php" method="get" class="py-5 text-center">
+                  <div class="pb-3">
+                        <label for="parking">Parcheggio</label>
+                        <select name="parking" id="parking">
+                              <option value="" disabled="disabled" selected>Seleziona un opzione</option>
+                              <option value="true">Si</option>
+                              <option value="false">No</option>
+                        </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Cerca</button>
+                  <button type="reset" class="btn btn-danger">Reset</button>
+            </form>
+            <table>
+                  <thead>
+                        <tr>
+                              <?php foreach ($hotels[0] as $key => $hotel) { ?>
+                                    <th class="p-3"> <?= $key ?> </th>
+                              <?php } ?>
+                        </tr>
+                  </thead>
+
+                  <tbody>
+                        <?php foreach ($hotels as $key => $hotel) { ?>
+                              <tr>
+                                    <?php foreach ($hotel as $key => $details) { ?>
+                                          <?php if ($key == 'parking' && $details == true) {
+                                                $details = 'disponibile';
+                                          } elseif ($key == 'parking' && $details == false) {
+                                                $details = 'non disponibile';
+                                          }
+                                          ?>
+                                          <td class="p-3"> <?= $details ?> </td>
+                                    <?php } ?>
+                              </tr>
+                        <?php } ?>
+                  </tbody>
+            </table>
+      </div>
 
 </body>
 
